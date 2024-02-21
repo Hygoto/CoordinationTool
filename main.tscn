@@ -1,0 +1,168 @@
+[gd_scene load_steps=4 format=3 uid="uid://dirhpilhurovo"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_iqem5"]
+[ext_resource type="PackedScene" uid="uid://ciuee3ckaxauh" path="res://map_button.tscn" id="2_xlw1j"]
+[ext_resource type="PackedScene" uid="uid://dhj4yt25e3s6x" path="res://web_socket.tscn" id="3_u8052"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iqem5")
+map_button = ExtResource("2_xlw1j")
+
+[node name="WebSocket" parent="." instance=ExtResource("3_u8052")]
+layout_mode = 1
+offset_left = 562.0
+offset_top = 420.0
+offset_right = -17.0
+offset_bottom = -66.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 568.0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.192157, 0.211765, 0.231373, 1)
+
+[node name="SCMaps" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MCsad" type="MarginContainer" parent="MarginContainer/SCMaps"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="GCMaps" type="GridContainer" parent="MarginContainer/SCMaps/MCsad"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="DownloadMapCovers" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 557.0
+offset_top = -51.0
+offset_right = 698.0
+offset_bottom = -20.0
+grow_vertical = 0
+text = "Download covers"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 548.0
+offset_bottom = 57.0
+
+[node name="Player1" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 657.0
+offset_top = 15.0
+offset_right = 1052.0
+offset_bottom = 57.0
+
+[node name="Player2" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 74.0
+offset_right = 1054.0
+offset_bottom = 116.0
+
+[node name="LabelPlayer1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 574.0
+offset_top = 25.0
+offset_right = 614.0
+offset_bottom = 48.0
+text = "Player 1
+"
+
+[node name="LabelPlayer2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 84.0
+offset_right = 638.0
+offset_bottom = 107.0
+text = "Player 2
+"
+
+[node name="SwitchPlayers" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 17.0
+offset_right = 1140.0
+offset_bottom = 51.0
+text = "switch"
+
+[node name="RandomizePlayers" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1072.0
+offset_top = 78.0
+offset_right = 1130.0
+offset_bottom = 112.0
+text = "random"
+
+[node name="Undo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 555.0
+offset_right = 612.0
+offset_bottom = 586.0
+text = "undo"
+
+[node name="ReloadPools" type="Button" parent="."]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 556.0
+offset_right = 731.0
+offset_bottom = 587.0
+text = "reload pools"
+
+[node name="CopyToClipboard" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 594.0
+offset_right = 957.0
+offset_bottom = 625.0
+button_pressed = true
+text = "copy picks to clipboard"
+
+[node name="CopyListToClipboard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 959.0
+offset_top = 598.0
+offset_right = 1151.0
+offset_bottom = 629.0
+text = "copy all picks and bans"
+
+[node name="PickorderList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 163.0
+offset_right = 1117.0
+offset_bottom = 405.0
+
+[connection signal="pressed" from="DownloadMapCovers" to="." method="_on_download_map_covers_pressed"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="SwitchPlayers" to="." method="_on_switch_players_pressed"]
+[connection signal="pressed" from="RandomizePlayers" to="." method="_on_randomize_players_pressed"]
+[connection signal="pressed" from="Undo" to="." method="_on_undo_pressed"]
+[connection signal="pressed" from="ReloadPools" to="." method="load_pools"]
+[connection signal="pressed" from="CopyListToClipboard" to="." method="_on_copy_list_to_clipboard_pressed"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhj4yt25e3s6x"]
+
+[ext_resource type="Script" path="res://WebSocket.gd" id="1_7q3vx"]
+
+[node name="WebSocket" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7q3vx")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Scores"
+horizontal_alignment = 1
+
+[node name="ScoreList" type="ItemList" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="PollWS" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_direction = 3
+layout_mode = 2
+columns = 2
+
+[node name="Connect" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "connect to websocket"
+
+[node name="CopyScores" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "copy scores"
+
+[connection signal="timeout" from="PollWS" to="." method="_on_poll_ws_timeout"]
+[connection signal="pressed" from="GridContainer/Connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="GridContainer/CopyScores" to="." method="_on_copy_scores_pressed"]
