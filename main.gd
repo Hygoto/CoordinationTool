@@ -18,6 +18,8 @@ func _process(delta):
 	pass
 
 func load_pools():
+	pools.clear()
+	$OptionButton.clear()
 	var dir = DirAccess.open("./pools")
 	dir.list_dir_begin()
 	while true:
