@@ -12,6 +12,7 @@ func _ready():
 	DirAccess.make_dir_absolute("user://covers")
 	DirAccess.make_dir_absolute("./pools")
 	load_pools()
+	print(Engine.get_copyright_info())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,6 +57,7 @@ func _on_download_map_covers_pressed():
 			request.request("https://cdn.beatsaver.com/" + song["hash"].to_lower() + ".jpg")
 
 func _on_image_downloaded(result, response_code, headers, body):
+	covers_downloading = covers_downloading - 1
 	if covers_downloading == 0:
 		select_pool(pools[selected_pool])
 
