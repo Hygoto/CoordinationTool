@@ -18,6 +18,7 @@ horizontal_alignment = 1
 [node name="ScoreList" type="ItemList" parent="."]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="PollWS" type="Timer" parent="."]
 wait_time = 0.2

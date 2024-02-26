@@ -16,16 +16,21 @@ map_button = ExtResource("2_xlw1j")
 
 [node name="WebSocket" parent="." instance=ExtResource("3_u8052")]
 layout_mode = 1
-offset_left = 562.0
-offset_top = 420.0
-offset_right = -17.0
+anchors_preset = -1
+anchor_left = 0.488
+anchor_top = 0.648
+anchor_right = 0.985
+offset_left = -0.176025
+offset_top = 0.0960083
+offset_right = 0.279907
 offset_bottom = -66.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = -1
+anchor_right = 0.493
 anchor_bottom = 1.0
-offset_right = 568.0
+offset_right = 0.0639648
 grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 75
@@ -54,110 +59,155 @@ columns = 2
 
 [node name="DownloadMapCovers" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = -1
+anchor_left = 0.484
 anchor_top = 1.0
+anchor_right = 0.606
 anchor_bottom = 1.0
-offset_left = 557.0
+offset_left = -0.568054
 offset_top = -51.0
-offset_right = 698.0
+offset_right = -0.112
 offset_bottom = -20.0
 grow_vertical = 0
 text = "Download covers"
 
 [node name="OptionButton" type="OptionButton" parent="."]
-layout_mode = 0
-offset_left = 20.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.017
+anchor_right = 0.476
+offset_left = 0.415998
 offset_top = 15.0
-offset_right = 548.0
+offset_right = -0.35199
 offset_bottom = 57.0
 
 [node name="Player1" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 657.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.57
+anchor_right = 0.913
+offset_left = 0.359924
 offset_top = 15.0
-offset_right = 1052.0
+offset_right = 0.223999
 offset_bottom = 57.0
 
 [node name="Player2" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 659.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.572
+anchor_right = 0.915
+offset_left = 0.0559692
 offset_top = 74.0
-offset_right = 1054.0
+offset_right = -0.0800781
 offset_bottom = 116.0
 
 [node name="LabelPlayer1" type="Label" parent="."]
-layout_mode = 0
-offset_left = 574.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.552
+offset_left = -2.0
 offset_top = 25.0
-offset_right = 614.0
+offset_right = -21.9041
 offset_bottom = 48.0
 text = "Player 1
 "
 
 [node name="LabelPlayer2" type="Label" parent="."]
-layout_mode = 0
-offset_left = 576.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.554
 offset_top = 84.0
-offset_right = 638.0
+offset_right = -0.208008
 offset_bottom = 107.0
 text = "Player 2
 "
 
 [node name="SwitchPlayers" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1070.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.929
+anchor_right = 0.99
+offset_left = -0.208008
 offset_top = 17.0
-offset_right = 1140.0
+offset_right = -0.480103
 offset_bottom = 51.0
 text = "switch"
 
 [node name="RandomizePlayers" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1072.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.931
+anchor_right = 0.991
+offset_left = -0.512085
 offset_top = 78.0
-offset_right = 1130.0
+offset_right = -11.6321
 offset_bottom = 112.0
 text = "random"
 
 [node name="Undo" type="Button" parent="."]
-layout_mode = 0
-offset_left = 562.0
-offset_top = 555.0
-offset_right = 612.0
-offset_bottom = 586.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.488
+anchor_top = 1.0
+anchor_right = 0.531
+anchor_bottom = 1.0
+offset_left = -0.176025
+offset_top = -93.0
+offset_right = 0.287964
+offset_bottom = -62.0
 text = "undo"
 
 [node name="ReloadPools" type="Button" parent="."]
-layout_mode = 0
-offset_left = 627.0
-offset_top = 556.0
-offset_right = 731.0
-offset_bottom = 587.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.544
+anchor_top = 1.0
+anchor_right = 0.635
+anchor_bottom = 1.0
+offset_left = 0.311951
+offset_top = -92.0
+offset_right = -0.520081
+offset_bottom = -61.0
 text = "reload pools"
 
 [node name="CopyToClipboard" type="CheckButton" parent="."]
-layout_mode = 0
-offset_left = 732.0
-offset_top = 594.0
-offset_right = 957.0
-offset_bottom = 625.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.635
+anchor_top = 1.0
+anchor_right = 0.831
+anchor_bottom = 1.0
+offset_left = 0.479919
+offset_top = -54.0
+offset_right = -0.312012
+offset_bottom = -23.0
 button_pressed = true
 text = "copy picks to clipboard"
 
 [node name="CopyListToClipboard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 959.0
-offset_top = 598.0
-offset_right = 1151.0
-offset_bottom = 629.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.832
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.536011
+offset_top = -50.0
+offset_right = -1.0
+offset_bottom = -19.0
 text = "copy all picks and bans"
 
 [node name="PickorderList" type="ItemList" parent="."]
-layout_mode = 0
-offset_left = 575.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_right = 0.97
+anchor_bottom = 0.625
+offset_left = 0.151978
 offset_top = 163.0
-offset_right = 1117.0
-offset_bottom = 405.0
+offset_right = -0.440063
 
 [connection signal="pressed" from="DownloadMapCovers" to="." method="_on_download_map_covers_pressed"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
