@@ -110,7 +110,10 @@ func _on_map_chosen(map):
 	map.disabled = true
 	if action["type"] != "tiebreaker":
 		picks.push_back({"type": action["type"], "player": action["player"], "map": map})
-		text = get_node("Player" + str(picks.back()["player"])).text + " " + picks.back()["type"] + "s " + picks.back()["map"].title
+		var player = get_node("Player" + str(picks.back()["player"])).text
+		if player.strip_edges() == "":
+			player = "Player " + str(picks.back()["player"])
+		text = player + " " + picks.back()["type"] + "s " + picks.back()["map"].title
 	else:
 		picks.push_back({"type": "tiebreaker", "map": map})
 		text = "tiebreaker: " + picks.back()["map"].title
@@ -141,7 +144,10 @@ func _on_copy_list_to_clipboard_pressed():
 	var text = ""
 	for pick in picks:
 		if pick["type"] != "tiebreaker":
-			text = text + "\n" + get_node("Player" + str(pick["player"])).text + " " + pick["type"] + "s " + pick["map"].title
+			var player = get_node("Player" + str(pick["player"])).text
+			if player.strip_edges() == "":
+				player = "Player " + str(pick["player"])
+			text = text + "\n" + player + " " + pick["type"] + "s " + pick["map"].title
 		else:
 			text = text + "\ntiebreaker: " + pick["map"].title
 	text = text.strip_edges()

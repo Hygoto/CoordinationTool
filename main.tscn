@@ -175,13 +175,13 @@ text = "reload pools"
 [node name="CopyToClipboard" type="CheckButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.635
+anchor_left = 0.619
 anchor_top = 1.0
-anchor_right = 0.831
+anchor_right = 0.814
 anchor_bottom = 1.0
-offset_left = 0.479919
+offset_left = -0.0880127
 offset_top = -54.0
-offset_right = -0.312012
+offset_right = 0.271973
 offset_bottom = -23.0
 button_pressed = true
 text = "copy picks to clipboard"
@@ -189,14 +189,14 @@ text = "copy picks to clipboard"
 [node name="CopyListToClipboard" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.832
+anchor_left = 0.82
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.987
 anchor_bottom = 1.0
-offset_left = 0.536011
-offset_top = -50.0
-offset_right = -1.0
-offset_bottom = -19.0
+offset_left = 0.359924
+offset_top = -51.0
+offset_right = -0.0240479
+offset_bottom = -20.0
 text = "copy all picks and bans"
 
 [node name="PickorderList" type="ItemList" parent="."]
