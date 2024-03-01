@@ -80,6 +80,8 @@ func select_pool(pool):
 	$PickorderList.set_item_selectable(0, true)
 	$PickorderList.select(0)
 	$PickorderList.set_item_selectable(0, false)
+	if $Player1.text != "" || $Player2.text != "":
+		_on_player_text_changed("")
 
 func _unhandled_input(event):
 	if event.is_action_pressed("undo"):
@@ -173,3 +175,32 @@ func create_pickorder():
 		if !pools.back().has("customData"):
 			pools.back()["customData"] = {}
 		pools.back()["customData"]["pickorder"] = pickorder
+
+
+func _on_player_text_changed(new_text):
+	var caret
+	if $Player1.text.contains(":"):
+		caret = $Player1.caret_column - 1
+		$Player1.text = $Player1.text.replace(":", "")
+		$Player1.caret_column = caret
+	if $Player2.text.contains(":"):
+		caret = $Player2.caret_column - 1
+		$Player2.text = $Player2.text.replace(":", "")
+		$Player2.caret_column = caret
+	var player1 = $Player1.text
+	var player2 = $Player2.text
+	if player1 == "":
+		player1 = "Player 1"
+	if player2 == "":
+		player2 = "Player 2"
+	var regex = RegEx.new()
+	regex.compile("(\\w+:(\\W*\\w*)+)")
+	var i = 0
+	for action in pools[selected_pool]["customData"]["pickorder"]:
+		if action["type"] != "tiebreaker":
+			var text = regex.search($PickorderList.get_item_text(i)).get_string()
+			if action["player"] == 1:
+				$PickorderList.set_item_text(i, player1 + " " + text)
+			if action["player"] == 2:
+				$PickorderList.set_item_text(i, player2 + " " + text)
+		i = i + 1

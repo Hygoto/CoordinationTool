@@ -211,6 +211,8 @@ offset_right = -0.440063
 
 [connection signal="pressed" from="DownloadMapCovers" to="." method="_on_download_map_covers_pressed"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="text_changed" from="Player1" to="." method="_on_player_text_changed"]
+[connection signal="text_changed" from="Player2" to="." method="_on_player_text_changed"]
 [connection signal="pressed" from="SwitchPlayers" to="." method="_on_switch_players_pressed"]
 [connection signal="pressed" from="RandomizePlayers" to="." method="_on_randomize_players_pressed"]
 [connection signal="pressed" from="Undo" to="." method="_on_undo_pressed"]
