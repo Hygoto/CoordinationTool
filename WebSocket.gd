@@ -24,7 +24,7 @@ func _on_connect_pressed():
 func display_scores():
 	$ScoreList.clear()
 	for score in scores:
-		$ScoreList.add_item(players[str(score)] + ":     " + str(round(scores[str(score)]["Accuracy"] * 10000) / 100) + "%     " + str(scores[str(score)]["Score"]))
+		$ScoreList.add_item(players[str(score)] + ":     " + str(round(scores[str(score)]["Accuracy"] * 10000) / 100) + "%   -   " + str(scores[str(score)]["Score"]))
 
 func _on_poll_ws_timeout():
 	websocket.poll()

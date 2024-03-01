@@ -44,6 +44,7 @@ func load_pools():
 		$OptionButton.add_theme_color_override("font_disabled_color", Color.RED)
 		$OptionButton.add_item("no mappools found")
 	else:
+		$OptionButton.disabled = false
 		select_pool(pools[selected_pool])
 
 func _on_download_map_covers_pressed():
