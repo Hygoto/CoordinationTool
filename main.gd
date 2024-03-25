@@ -32,10 +32,16 @@ func load_pools():
 			var error = json.parse(content)
 			if error == OK:
 				pools.push_back(json.data)
+				if !json.data.has("playlistTitle"):
+					json.data["playlistTitle"] = f.get_path().get_file().get_basename()
 				$OptionButton.add_item(json.data["playlistTitle"])
-				create_pickorder()
+				if !check_playlist():
+					$OptionButton.set_item_disabled($OptionButton.get_item_count()-1, true)
+					$OptionButton.set_item_tooltip($OptionButton.get_item_count()-1, "The playlist is missing at least 1 required property.")
+				else:
+					create_pickorder()
 			else:
-				print("JSON Parse Error: ", json.get_error_message(), " in ", "/home/hygoto/Downloads/Tech.bplist", " at line ", json.get_error_line())
+				print("JSON Parse Error: ", json.get_error_message(), " in ", f.get_path(), " at line ", json.get_error_line())
 				print(json.data)
 		elif file == "":
 			break
@@ -46,6 +52,28 @@ func load_pools():
 	else:
 		$OptionButton.disabled = false
 		select_pool(pools[selected_pool])
+
+func check_playlist():
+	var playlist = pools[pools.size()-1]
+	if !playlist.has("songs") || typeof(playlist["songs"]) != TYPE_ARRAY:
+		return false
+	var i = 0
+	for song in playlist["songs"]:
+		if !song.has("songName"):
+			return false
+		if !song.has("customData") || typeof(song["customData"]) != TYPE_DICTIONARY:
+			pools[pools.size()-1]["songs"][i]["customData"] = {"type": ""}
+		elif !song["customData"].has("type"):
+			pools[pools.size()-1]["songs"][i]["customData"]["type"] = ""
+		if !song.has("hash"):
+			pools[pools.size()-1]["songs"][i]["hash"] = ""
+		if !song.has("difficulties") || typeof(song["difficulties"]) != TYPE_ARRAY:
+			pools[pools.size()-1]["songs"][i]["difficulties"] = [{"name": ""}]
+		elif song["difficulties"].size() < 1 || typeof(song["difficulties"][0]) != TYPE_DICTIONARY:
+			pools[pools.size()-1]["songs"][i]["difficulties"][0] = {"name": ""}
+		elif !song["difficulties"][0].has("name"):
+			pools[pools.size()-1]["songs"][i]["difficulties"][0]["name"] = ""
+	return true
 
 func _on_download_map_covers_pressed():
 	for pool in pools:
@@ -105,9 +133,10 @@ func _on_randomize_players_pressed():
 func _on_map_chosen(map):
 	var action = pools[selected_pool]["customData"]["pickorder"][picks.size()]
 	$PickorderList.deselect_all()
-	$PickorderList.set_item_selectable(picks.size()+1, true)
-	$PickorderList.select(picks.size()+1)
-	$PickorderList.set_item_selectable(picks.size()+1, false)
+	if picks.size() + 1 < $PickorderList.get_item_count():
+		$PickorderList.set_item_selectable(picks.size()+1, true)
+		$PickorderList.select(picks.size()+1)
+		$PickorderList.set_item_selectable(picks.size()+1, false)
 	$PickorderList.set_item_text(picks.size(), $PickorderList.get_item_text(picks.size()) + map.title)
 	var text
 	map.disabled = true
