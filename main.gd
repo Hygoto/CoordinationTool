@@ -72,16 +72,15 @@ func select_pool(pool):
 		$MarginContainer/SCMaps/MCsad/GCMaps.add_child(map)
 		map.pressed.connect(self._on_map_chosen.bind(map))
 		map.set_vars(song["hash"], song["songName"], song["customData"]["type"], song["difficulties"][0]["name"], "user://covers/" + song["hash"].to_lower() + ".jpg")
+	var players = get_player_names()
 	for action in pool["customData"]["pickorder"]:
 		if action["type"] != "tiebreaker":
-			$PickorderList.add_item("Player " + str(action["player"]) + " " + action["type"] + ":   ", null, false)
+			$PickorderList.add_item(players[action["player"]-1] + " " + action["type"] + ":   ", null, false)
 		else:
 			$PickorderList.add_item("tiebreaker:   ", null, false)
 	$PickorderList.set_item_selectable(0, true)
 	$PickorderList.select(0)
 	$PickorderList.set_item_selectable(0, false)
-	if $Player1.text != "" || $Player2.text != "":
-		_on_player_text_changed("")
 
 func _unhandled_input(event):
 	if event.is_action_pressed("undo"):
@@ -96,6 +95,7 @@ func _on_switch_players_pressed():
 	var tmp = $Player1.text
 	$Player1.text = $Player2.text
 	$Player2.text = tmp
+	$Player1.emit_signal("text_changed", "")
 
 
 func _on_randomize_players_pressed():
@@ -113,10 +113,8 @@ func _on_map_chosen(map):
 	map.disabled = true
 	if action["type"] != "tiebreaker":
 		picks.push_back({"type": action["type"], "player": action["player"], "map": map})
-		var player = get_node("Player" + str(picks.back()["player"])).text
-		if player.strip_edges() == "":
-			player = "Player " + str(picks.back()["player"])
-		text = player + " " + picks.back()["type"] + "s " + picks.back()["map"].title
+		var players = get_player_names()
+		text = players[picks.back()["player"]-1] + " " + picks.back()["type"] + "s " + picks.back()["map"].title
 	else:
 		picks.push_back({"type": "tiebreaker", "map": map})
 		text = "tiebreaker: " + picks.back()["map"].title
@@ -137,20 +135,19 @@ func _on_undo_pressed():
 		$PickorderList.set_item_selectable(picks.size(), false)
 		var action = pools[selected_pool]["customData"]["pickorder"][picks.size()]
 		if action["type"] != "tiebreaker":
-			$PickorderList.set_item_text(picks.size(), "Player " + str(action["player"]) + " " + action["type"] + ":   ")
+			var players = get_player_names()
+			$PickorderList.set_item_text(picks.size(), players[action["player"]-1] + " " + action["type"] + ":   ")
 		else:
 			$PickorderList.set_item_text(picks.size(), "tiebreaker:   ")
 
 
 
 func _on_copy_list_to_clipboard_pressed():
+	var players = get_player_names()
 	var text = ""
 	for pick in picks:
 		if pick["type"] != "tiebreaker":
-			var player = get_node("Player" + str(pick["player"])).text
-			if player.strip_edges() == "":
-				player = "Player " + str(pick["player"])
-			text = text + "\n" + player + " " + pick["type"] + "s " + pick["map"].title
+			text = text + "\n" + players[pick["player"]-1] + " " + pick["type"] + "s " + pick["map"].title
 		else:
 			text = text + "\ntiebreaker: " + pick["map"].title
 	text = text.strip_edges()
@@ -178,29 +175,20 @@ func create_pickorder():
 
 
 func _on_player_text_changed(new_text):
-	var caret
-	if $Player1.text.contains(":"):
-		caret = $Player1.caret_column - 1
-		$Player1.text = $Player1.text.replace(":", "")
-		$Player1.caret_column = caret
-	if $Player2.text.contains(":"):
-		caret = $Player2.caret_column - 1
-		$Player2.text = $Player2.text.replace(":", "")
-		$Player2.caret_column = caret
-	var player1 = $Player1.text
-	var player2 = $Player2.text
-	if player1 == "":
-		player1 = "Player 1"
-	if player2 == "":
-		player2 = "Player 2"
-	var regex = RegEx.new()
-	regex.compile("(\\w+:(\\W*\\w*)+)")
+	var players = get_player_names()
 	var i = 0
 	for action in pools[selected_pool]["customData"]["pickorder"]:
 		if action["type"] != "tiebreaker":
-			var text = regex.search($PickorderList.get_item_text(i)).get_string()
-			if action["player"] == 1:
-				$PickorderList.set_item_text(i, player1 + " " + text)
-			if action["player"] == 2:
-				$PickorderList.set_item_text(i, player2 + " " + text)
+			var text = players[action["player"]-1] + " " + action["type"] + ":   "
+			if picks.size() > i:
+				text += picks[i]["map"].title
+			$PickorderList.set_item_text(i, text)
 		i = i + 1
+
+func get_player_names():
+	var players = [$Player1.text, $Player2.text]
+	if players[0].strip_edges() == "":
+		players[0] = "Player 1"
+	if players[1].strip_edges() == "":
+		players[1] = "Player 2"
+	return players
