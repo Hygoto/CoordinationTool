@@ -73,6 +73,7 @@ func check_playlist():
 			pools[pools.size()-1]["songs"][i]["difficulties"][0] = {"name": ""}
 		elif !song["difficulties"][0].has("name"):
 			pools[pools.size()-1]["songs"][i]["difficulties"][0]["name"] = ""
+		i += 1
 	return true
 
 func _on_download_map_covers_pressed():
