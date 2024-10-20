@@ -1,0 +1,11 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1729442306
+export_presets.cfg::TextFile::-1::1729440129::0::1::::<><>::
+icon.svg::CompressedTexture2D::4923463255089798432::1729440129::1729442169::1::::<><>::
+main.gd::GDScript::-1::1729441032::0::1::::<>Control<>::
+main.tscn::PackedScene::7756319465385626616::1729440129::0::1::::<><>::res://main.gd<>uid://ciuee3ckaxauh::::res://map_button.tscn<>uid://dhj4yt25e3s6x::::res://web_socket.tscn
+map_button.gd::GDScript::-1::1729440909::0::1::::<>Button<>::
+map_button.tscn::PackedScene::5375891156917013927::1729440129::0::1::::<><>::res://map_button.gd
+README.md::TextFile::-1::1729440129::0::1::::<><>::
+WebSocket.gd::GDScript::-1::1729440129::0::1::::<>VBoxContainer<>::
+web_socket.tscn::PackedScene::7670968049198915229::1729440129::0::1::::<><>::res://WebSocket.gd

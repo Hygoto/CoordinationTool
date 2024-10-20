@@ -5,6 +5,7 @@ var category
 var diff
 var cover
 var map_hash
+var mapper
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,16 +15,18 @@ func _ready():
 func _process(delta):
 	pass
 
-func set_vars(new_hash, new_title, new_category, new_diff, new_cover):
+func set_vars(new_hash, new_title, new_category, new_diff, new_cover,new_mapper):
 	map_hash = new_hash
 	title = new_title
 	category = new_category
 	diff = new_diff
+	mapper = new_mapper
 	if FileAccess.file_exists(new_cover):
 		cover = ImageTexture.create_from_image(Image.load_from_file(new_cover))
 	$Title.text = title
 	$Category.text = category
 	$Diff.text = diff
+	$Mapper.text = mapper
 	$Cover.texture = cover
 
 func set_title_color(color):

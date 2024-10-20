@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciuee3ckaxauh"]
+[gd_scene load_steps=3 format=3 uid="uid://ciuee3ckaxauh"]
 
 [ext_resource type="Script" path="res://map_button.gd" id="1_fkmc5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uw5px"]
 
 [node name="MapButton" type="Button" groups=["maps"]]
 custom_minimum_size = Vector2(250, 100)
@@ -13,10 +15,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -25.0
-offset_right = 80.0
-offset_bottom = 45.0
+offset_left = 2.0
+offset_top = -24.0
+offset_right = 72.0
+offset_bottom = 46.0
 grow_vertical = 2
 expand_mode = 1
 
@@ -26,6 +28,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
+label_settings = SubResource("LabelSettings_uw5px")
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
@@ -51,9 +54,24 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -70.0
-offset_top = -11.5
+offset_top = 3.5
 offset_right = 150.0
-offset_bottom = 11.5
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[node name="Mapper" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -17.5
+offset_right = 150.0
+offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
