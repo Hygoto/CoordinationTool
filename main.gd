@@ -73,6 +73,8 @@ func check_playlist():
 			pools[pools.size()-1]["songs"][i]["difficulties"][0] = {"name": ""}
 		elif !song["difficulties"][0].has("name"):
 			pools[pools.size()-1]["songs"][i]["difficulties"][0]["name"] = ""
+		elif !song.has("levelAuthorName"):
+			pools[pools.size()-1]["songs"][i]["levelAuthorName"] = ""
 		i += 1
 	return true
 
@@ -100,7 +102,7 @@ func select_pool(pool):
 		map = map_button.instantiate()
 		$MarginContainer/SCMaps/MCsad/GCMaps.add_child(map)
 		map.pressed.connect(self._on_map_chosen.bind(map))
-		map.set_vars(song["hash"], song["songName"], song["customData"]["type"], song["difficulties"][0]["name"], "user://covers/" + song["hash"].to_lower() + ".jpg")
+		map.set_vars(song["hash"], song["songName"], song["customData"]["type"], song["difficulties"][0]["name"], "user://covers/" + song["hash"].to_lower() + ".jpg",song["levelAuthorName"])
 	var players = get_player_names()
 	for action in pool["customData"]["pickorder"]:
 		if action["type"] != "tiebreaker":
